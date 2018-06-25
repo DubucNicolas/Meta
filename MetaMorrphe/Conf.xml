@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+<!-- Define Process -->
+	<!-- Define available Interface -->
+	
+	<!--
+	<AddMetaInterface>
+		<setId>flat_file_input</setId>
+		<setFolder>ressources\in</setFolder>
+		<setType>meta_int_file</setType>
+		<setDescription>Flat file input interface</setDescription>
+	</AddMetaInterface>
+	<AddMetaInterface>
+		<setId>xml_file_outputt</setId>
+		<setType>meta_int_file</setType>
+		<setFolder>ressources\out</setFolder>
+		<setDescription>Xml File output interface</setDescription>
+	</AddMetaInterface>
+	-->
+	
+<!-- define data containers -->
+	<!-- Output file container -->	
+	<AddDataContainer>
+		<setDataContainerlType>file_xml</setDataContainerlType>
+		<!--<setInterfaces>xml_file_outputt</setInterfaces>-->
+		<setId>xml_file_outputt</setId>
+		<ContentOfDataContainer>
+			<setNameRegexIdentifier>flat_product.xml</setNameRegexIdentifier>
+			<AddXmlFieldDefinition>
+				<setTagName>Xml file Annu</setTagName>
+				<setMapping>Product</setMapping>
+			</AddXmlFieldDefinition>
+			<AddXmlStructureDefinition>
+				<setTagName>Products</setTagName>
+				<setIterative>true</setIterative>
+				<AddXmlFieldDefinition>
+					<setTagName>InformationProduit</setTagName>
+					<setMapping>Product.description</setMapping>
+				</AddXmlFieldDefinition>
+				<AddXmlFieldDefinition>
+					<setTagName>productCode</setTagName>
+					<setMapping>Product.code</setMapping>
+				</AddXmlFieldDefinition>
+				<AddXmlFieldDefinition>
+					<setTagName>Prix</setTagName>
+					<setMapping>Product.price</setMapping>
+				</AddXmlFieldDefinition>
+				<AddXmlFieldDefinition>
+					<setTagName>Quantity</setTagName>
+					<setMapping>Product.qty</setMapping>
+				</AddXmlFieldDefinition>
+			</AddXmlStructureDefinition>
+		</ContentOfDataContainer>
+	</AddDataContainer>
+
+	<!-- Input file container -->
+	<AddDataContainer>
+		<setDataContainerlType>file_flat_separator_lenght</setDataContainerlType>
+		<!--<setInterfaces>flat_file_input</setInterfaces>-->
+		<setId>flat_file_input</setId>
+		<ContentOfDataContainer>
+			<setHeaderSippLines>1</setHeaderSippLines>
+			<setNameRegexIdentifier>.*flat.*csv</setNameRegexIdentifier>
+			<setSeparator>;</setSeparator>
+			<AddFlatFileLineDefinition>
+				<!--<setHeaderId>E</setHeaderId>-->
+				<!--<setHeaderPosition>0</setHeaderPosition> Inutile -->
+				<buildNewBO>Product</buildNewBO><!-- mean this line is the iterative criteria for Ordinateur BO -->
+				<AddFlatFileFieldDefinition>
+					<setId>Libelle</setId>
+					<setColumn>1</setColumn>
+					<setMapping>Product.description</setMapping>
+				</AddFlatFileFieldDefinition>
+				<AddFlatFileFieldDefinition>
+					<setId>Code</setId>
+					<setColumn>2</setColumn>
+					<setMapping>Product.code</setMapping>
+				</AddFlatFileFieldDefinition>
+				<AddFlatFileFieldDefinition>
+					<setId>PU</setId>
+					<setColumn>3</setColumn>
+					<setMapping>Product.price</setMapping>
+				</AddFlatFileFieldDefinition>
+				<AddFlatFileFieldDefinition>
+					<setId>Qty</setId>
+					<setColumn>4</setColumn>
+					<setMapping>Product.qty</setMapping>
+				</AddFlatFileFieldDefinition>
+			</AddFlatFileLineDefinition>
+		</ContentOfDataContainer>
+	</AddDataContainer>
+	
+<!-- Business Objects -->
+	<!-- Catalogue Business object Definition -->
+	
+	<!--
+	<AddBusinessObjectDefinition>
+		<setId>ProductCatalogue</setId>
+		<AddFieldDefinition>
+			<setId>description</setId>
+			<setType>string</setType>
+		</AddFieldDefinition>
+		<AddBusinessObjectDefinition>
+			<setId>Client</setId>
+			<AddFieldDefinition>
+				<setId>id</setId>
+				<setType>string</setType>
+			</AddFieldDefinition>
+			<AddFieldDefinition>
+				<setId>name</setId>
+				<setType>string</setType>
+			</AddFieldDefinition>
+			<AddFieldDefinition>
+				<setId>CA</setId>
+				<setType>int</setType>
+			</AddFieldDefinition>
+			<AddBusinessObjectDefinition>
+				<setId>Contact</setId>
+				<AddFieldDefinition>
+					<setId>name</setId>
+					<setType>string</setType>
+				</AddFieldDefinition>
+				<AddFieldDefinition>
+					<setId>id</setId>
+					<setType>string</setType>
+				</AddFieldDefinition>
+			</AddBusinessObjectDefinition>
+		</AddBusinessObjectDefinition>
+	-->
+		<AddBusinessObjectDefinition>
+			<setId>Product</setId>
+			<AddFieldDefinition>
+				<setId>description</setId>
+				<setType>string</setType>
+			</AddFieldDefinition>
+			<AddFieldDefinition>
+				<setId>Price</setId>
+				<setType>float</setType>
+			</AddFieldDefinition>
+			<AddFieldDefinition>
+				<setId>Quantity</setId>
+				<setType>String</setType>
+			</AddFieldDefinition>
+			<AddFieldDefinition>
+				<setId>code</setId>
+				<setType>Date</setType>
+			</AddFieldDefinition>
+			<AddFieldDefinition>
+				<setId>other</setId>
+				<setType>int</setType>
+			</AddFieldDefinition>
+		</AddBusinessObjectDefinition>
+	<!--
+		<AddFieldDefinition>
+			<setId>name</setId>
+			<setType>string</setType>
+		</AddFieldDefinition>
+	</AddBusinessObjectDefinition>
+	-->
+</Configuration>
